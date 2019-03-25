@@ -1,18 +1,30 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <title>{{title}} - Hello</title>
+    <meta charset="utf-8">  
+    <title>{{name}}'s Watchlist</title>
   </head>
   <body>
-    <div>Index: <a href="/index">Home</a></div>
+    <h2>{{name}}'s Watchlist</h2>
+    <p>{{movies | length}} Titles</p>
+    <ul>
+      {%for movie in movies%}
+      <li>{{movie.title}} - {{movie.year}}</li>
+      {% endfor %}
+    </ul>
     <hr>
-      <h1>Hi, {{user.username}}!</h1>
-      <div><p>{{author.username}} : says: <b>{{author.body}}</b></p></div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{message}}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {%block content%} {% endblock %}
+    <footer>
+      <small>&copy; 2018 <a href="http://helloflask.com/tutorial">HelloFlask</a></small>
+    </footer>
   </body>
 </html>
-<!-- {%extends "base.html"%} -->
-
-<!-- {%block content%} -->
-  <!-- <h1>Hi, {{user.username}}!</h1> -->
-  <!-- <div><p>{{author.username}} : says: <b>{{author.body}}</b></p></div> -->
-<!-- {%endblock%} -->
-

@@ -1,9 +1,13 @@
 <html>
   <head>
     <title>{{title}} - Hello</title>
+    <div>
+      导航:
+      <a href="{{url_for('index')}}">Home</a>
+      <a href="{{url_for('login')}}">Login</a>
+    </div>
   </head>
   <body>
-    <div>Index: <a href="/index">Home</a></div>
     <hr>
     {% block content %}{% endblock %}
   </body>
