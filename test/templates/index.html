@@ -1,30 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+
+{% block content %}
   <head>
     <meta charset="utf-8">  
-    <title>{{name}}'s Watchlist</title>
+    <title>{{current_user.username}}'s Watchlist</title>
   </head>
   <body>
-    <h2>{{name}}'s Watchlist</h2>
-    <p>{{movies | length}} Titles</p>
-    <ul>
-      {%for movie in movies%}
-      <li>{{movie.title}} - {{movie.year}}</li>
-      {% endfor %}
-    </ul>
-    <hr>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <ul>
-      {% for message in messages %}
-      <li>{{message}}</li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-    {% endwith %}
-    {%block content%} {% endblock %}
+    <p> Welcome {{current_user.username}}</p>
+    {% for post in posts %}
+    <div><p>{{post.author.username}} says: <b>{{ post.body }}</b></p></div>
+    {% endfor %}
     <footer>
       <small>&copy; 2018 <a href="http://helloflask.com/tutorial">HelloFlask</a></small>
     </footer>
   </body>
-</html>
+{% endblock %}

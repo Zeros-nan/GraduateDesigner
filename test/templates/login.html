@@ -21,4 +21,5 @@
     <p>{{ form.remember_me() }} {{ form.remember_me.label }} </p>
     <p>{{ form.submit() }}</p>
   </form>
+  <p>新用户？<a href="{{url_for('register')}}">Click to Register!</p>
 {% endblock%}
