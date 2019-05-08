@@ -1,13 +1,9 @@
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import UserMixin
-from test import app, login
 from hashlib import md5
 from datetime import datetime
+from app import db, login
 
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
 
 class User(UserMixin, db.Model):
     id=db.Column(db.Integer, primary_key=True)
@@ -30,6 +26,7 @@ class User(UserMixin, db.Model):
         digest = md5(self.email.lower().encode('utf-8')).hexdigest()
         return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
                 digest, size)
+
 
 @login.user_loader
 def load_user(id):
